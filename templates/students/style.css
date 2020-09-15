@@ -1,0 +1,111 @@
+body{
+    margin: 0px;
+}
+.logo{
+    height: fit-content;
+    max-width: 500px;
+    padding-left: 10px;
+}
+.navbar-bottom{
+    border-bottom: 1px solid gray;
+}
+.profile-image{
+    height: 50px;
+    width: 50px;
+}
+
+.profile{
+    padding-right: 5px;
+}
+
+.logout :hover{
+    color: #3875d7;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    min-height: 900px;
+  }
+
+  .right {
+    width: 25%;
+    background-color:#F6F8FA;
+  }
+
+  .left {
+    width: 75%;
+    background-color:#FFFFFF;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.pageLeftbody{
+    padding: 20px 10px 0 30px;
+}
+
+.displayImage{
+  height: 500px;
+  width: 800px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  margin: 50px;
+}
+
+.displayText{
+  background: #F6F8FA;
+  max-height: 300px;
+  max-width: 500px;
+  margin :150px;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.displayText > h1 {
+  font-family: 'Crete Round', serif;
+  font-weight: bolder;
+}
+.displayText > p {
+  font-family: 'Roboto Slab', serif;
+}
+
+.displayImage:hover{
+  -ms-transform: scale(1.01); /* IE 9 */
+  -webkit-transform: scale(1.01); /* Safari 3-8 */
+  transform: scale(1.01);
+}
+
+.recentViews {
+  font-size: 30px;
+  margin: 20px;
+  font-family: 'Crete Round', serif;
+}
+
+.recents{
+  width: 70%;
+  height: auto;
+  margin-left: 30px;
+}
+
+.classes:hover{
+    -ms-transform: scale(1.01); /* IE 9 */
+    -webkit-transform: scale(1.01); /* Safari 3-8 */
+    transform: scale(1.01);
+}
+.pageLeftbody > .card{
+    display: inline-block;
+}
+.classes{
+    margin:10px;
+}
+
+.teacher-profile{
+    width: 40px;
+}
+
+.classinfo >li{
+    list-style-image: url('../icons/check.svg');
+}

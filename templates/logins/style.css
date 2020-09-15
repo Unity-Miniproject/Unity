@@ -1,0 +1,18 @@
+.header{
+    height: fit-content;
+    max-width: 500px;
+    padding-left: 10px;
+}
+
+.profile-image{
+    height: 50px;
+    width: 50px;
+}
+
+.profile{
+    padding-right: 5px;
+}
+
+.logout :hover{
+    color: #3875d7;
+}

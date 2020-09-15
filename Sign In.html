@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Sign In</title>
+    
+    
+  </head>
+  <body cz-shortcut-listen="true">
+    
+
+    
+
+    <div>
+      <strong>Menu:</strong>
+      <ul>
+        
+        <li><a href="http://127.0.0.1:8000/accounts/login/">Sign In</a></li>
+        <li><a href="http://127.0.0.1:8000/accounts/signup/">Sign Up</a></li>
+        
+      </ul>
+    </div>
+    
+
+<h1>Sign In</h1>
+
+
+
+
+<p>Please sign in with one
+of your existing third party accounts. Or, <a href="http://127.0.0.1:8000/accounts/signup/">sign up</a>
+for a Bmsit account and sign in below:</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    
+
+
+
+
+
+<li>
+  <a title="Google" class="socialaccount_provider google" href="http://127.0.0.1:8000/accounts/google/login/?process=login">Google</a>
+</li>
+
+
+  </ul>
+
+  <div class="login-or">or</div>
+
+</div>
+
+
+
+
+
+
+
+
+<form class="login" method="POST" action="/accounts/login/">
+  <input type="hidden" name="csrfmiddlewaretoken" value="2cADJqWFRRF8z8z0cix95lO3cVMKcK5j8owAi7yki1XfyQEspZGPsBJFskoLBy1P">
+  <p><label for="id_login">Username:</label> <input type="text" name="login" placeholder="Username" autofocus="autofocus" maxlength="150" required="" id="id_login" value="abhi"></p>
+<p><label for="id_password">Password:</label> <input type="password" name="password" placeholder="Password" required="" id="id_password"></p>
+<p><label for="id_remember">Remember Me:</label> <input type="checkbox" name="remember" id="id_remember"></p>
+  
+  <a class="button secondaryAction" href="http://127.0.0.1:8000/accounts/password/reset/">Forgot Password?</a>
+  <button class="primaryAction" type="submit">Sign In</button>
+</form>
+
+
+    
+    
+    
+  
+
+</body></html>
