@@ -109,3 +109,7 @@ body{
 .classinfo >li{
     list-style-image: url('../icons/check.svg');
 }
+
+.userprofile{
+    border-radius: 50%;
+}
