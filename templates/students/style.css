@@ -1,5 +1,7 @@
 body{
     margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 .logo{
     height: fit-content;
@@ -112,4 +114,10 @@ body{
 
 .userprofile{
     border-radius: 50%;
+}
+
+.userprofile:hover{
+    -ms-transform: scale(1.05); /* IE 9 */
+    -webkit-transform: scale(1.05); /* Safari 3-8 */
+    transform: scale(1.05);
 }

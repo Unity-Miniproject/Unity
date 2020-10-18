@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # created apps
-    'students',
     'teachers',
+    'students',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -83,14 +83,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'miniproject',
+        'CLIENT': {
+           'host': 'localhost:27017',
+        }
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -132,3 +140,18 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = 'uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+SOCIAL_AUTH_PIPELINE = {
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'students.pipeline.save_users',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+
+}
+
+ACCOUNT_EMAIL_REQUIRED = True
+AUTH_PROFILE_MODULE = 'accounts.Bmsit_Students'

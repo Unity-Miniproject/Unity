@@ -49,19 +49,15 @@
             </li>
         </ul>
         <div class="profile">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown dropdown-header">
                 <div class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50" />
+                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/>
                 </div>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">{{ user.username }}</a>
-                  <a class="dropdown-item" href="#">{{ user.email }}</a>
-                  <a class="dropdown-item" href="#">profile</a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'profile' user.username %}"><img src="{% static 'icons/person-fill.svg' %}"> Profile</a>
+                  <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
                   <div class="dropdown-divider"></div>
-                   <form method="post" action="{{ 'logout' }}">
-                    {% csrf_token %}
-                    <button class="dropdown-item logout" type="submit">Sign Out</button>
-                    </form>
+                    <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>
                 </div>
               </li>
         </div>
@@ -75,13 +71,13 @@
                 <img src="{% static 'images/bmslogo.png' %}" class="card-img-top" alt="class">
                     <div class="card-body">
                         <p class="card-text">
-                        Subject Sem
+                        <a href="{% url 'subjects' user.username %}">Subject </a><a href="">Semister </a> 
                             <ul class="classinfo">
                                 <li>
-                                    <a href="">Classes</a>
+                                    <a href="{% url 'classes' user.username %}">Classes</a>
                                 </li>
                                 <li>
-                                    <a href="">Assignment</a>
+                                    <a href="{% url 'assignments' user.username %}">Assignment</a>
                                 </li>
                                 <li>
                                     <a href="">Notes</a>
