@@ -1,0 +1,133 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image" sizes="16x16">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'teachers/profile/style.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+          <!--College logo -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bottom">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a href="{% url 'profile' %}"><img class="logo" src="{% static 'images/bmslogo.png' %}" alt="logo"></a>
+            </li>
+        </ul>
+
+    <!-- Teacher profile section -->
+
+        {% comment %} <div class="profile">
+            <li class="nav-item dropdown dropdown-header">
+                <div class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'icons/house-fill.svg' %}"> Home</a>
+                  <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
+                  <div class="dropdown-divider"></div>
+                    <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>
+                </div>
+              </li>
+        </div> {% endcomment %}
+        </div>
+    </nav>
+
+
+
+                      <!-- Notification Section -->
+        <div class="column left border-left">
+          {% comment %} <span class="recentViews">Teacher</span> {% endcomment %}
+           <img class="teachericon center" src="{% static 'icons/user.svg' %}" alt="Teacher">
+           <div class="list-group details">
+            <span class="list-group-item list-group-item-action center ">Teacher Name</span>
+            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
+            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
+            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
+            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
+            </div>
+            </ul><br>
+            <button type="button" class="btn btn-outline-danger center">Sign Out</button>
+        </div>
+
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A Sec</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">B Sec</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">C Sec</a>
+            </li>
+            </ul>
+            <div class="tab-content tab-container" id="myTabContent">
+                <!-- A Section Details -->
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
+                    <button type="button" class="btn btn-outline-info float-right">Students</button><br>
+                        
+                        <div class="mx-auto">
+                            <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto">Subject Name</h2>
+                        </div>
+                        <div class="syllabus">
+                            <div class="card-group">
+                            <div class="card">
+                            <div class="input-group mb-3">
+                                <form action="#">
+                                <input type="checkbox" value="topic-1">
+                                <label for="vehicle1"> Topic - 1 </label><br>
+                                <input type="checkbox"  value="topic-1">
+                                <label for="vehicle2"> Topic - 1</label><br>
+                                <input type="checkbox"  value="topic-1">
+                                <label for="vehicle3"> Topic - 1</label><br><br>
+                                <input type="submit" value="Submit">
+                            </form>
+                            </div>
+                            </div>
+                            <div class="card">
+                                <form action="#">
+                                <input type="checkbox" value="topic-1">
+                                <label for="vehicle1"> Topic - 1 </label><br>
+                                <input type="checkbox"  value="topic-1">
+                                <label for="vehicle2"> Topic - 1</label><br>
+                                <input type="checkbox"  value="topic-1">
+                                <label for="vehicle3"> Topic - 1</label><br><br>
+                                <input type="submit" value="Submit">
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--B Sec details  -->
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    This is the content of B Section students
+                </div>
+                <!-- C Sec Details -->
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    This is the content of C Section students
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>

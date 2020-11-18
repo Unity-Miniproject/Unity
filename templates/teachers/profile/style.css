@@ -1,0 +1,65 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.logo{
+    height: fit-content;
+    max-width: 500px;
+    padding-left: 10px;
+}
+.navbar-bottom{
+    border-bottom: 1px solid gray;
+}
+.column {
+    float: left;
+    padding: 10px;
+    min-height: 900px;
+    align-content: center;
+  }
+
+  .left {
+    width: 25%;
+    background-color:#F6F8FA;
+  }
+
+  .teachericon{
+      height: 300px;
+        align-self: center;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  } 
+
+  .details{
+      text-align: center;
+  }
+  .details > .list-group-item{
+      width: auto;
+  }
+
+  .float-right{
+    float: right;
+  }
+
+  .tab-container{
+    padding: 10px;
+  }
+  .subject-name{
+    width: 500px;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  .pagination{
+    padding-left: 100px;
+  }
+  .syllabus{
+    min-height: 70%;
+    width: 60%;
+    margin: 30px 30px 30px;
+    margin-left: 600px;
+  }
