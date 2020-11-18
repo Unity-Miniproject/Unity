@@ -12,7 +12,6 @@
 
           <!--navbar to naviagte-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bottom">
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
@@ -71,7 +70,8 @@
                 <img src="{% static 'images/bmslogo.png' %}" class="card-img-top" alt="class">
                     <div class="card-body">
                         <p class="card-text">
-                        <a href="{% url 'subjects' user.username %}">Subject </a><a href="">Semister </a> 
+                        <a href="{% url 'subjects' user.username %}">Subject </a>
+                        <a href="">Semister </a> 
                             <ul class="classinfo">
                                 <li>
                                     <a href="{% url 'classes' user.username %}">Classes</a>
