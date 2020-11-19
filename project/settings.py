@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # created apps
     'teachers',
     'students',
+    'subjects',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
