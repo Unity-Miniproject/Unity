@@ -1,0 +1,21 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.logo{
+    height: fit-content;
+    max-width: 500px;
+    padding-left: 10px;
+}
+
+.classcreate {
+    margin: auto;
+    width: 50%;
+    height: auto;
+    border: 1px solid rgb(7, 7, 7);
+    padding: 10px;
+    margin-top: 5%;
+  }
+
+  
