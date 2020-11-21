@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Bmsit_Students
+from .models import Students
 
 
 # Create your views here.
@@ -37,10 +37,10 @@ def viewProfile(request, slug):
     current_user = request.user
     try:
         context = {
-            'details': Bmsit_Students.objects.get(user_id=current_user.id)
+            'details': Students.objects.get(user_id=current_user.id)
         }
         return render(request, 'students/profile.html', context)
-    except Bmsit_Students.DoesNotExist:
+    except Students.DoesNotExist:
         return redirect('editprofile', slug)
 
 

@@ -11,40 +11,29 @@
     <title>Teacher</title>
 </head>
 <body>
-          <!--College logo -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bottom">
 
+ <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bottom">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  <a href="{% url 'profile' %}"><img class="logo" src="{% static 'images/bmslogo.png' %}" alt="logo"></a>
+                <img class="logo" src="{% static 'images/bmslogo.png' %}" alt="logo">
+            </li>
+            <li>
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
             </li>
         </ul>
-
-    <!-- Teacher profile section -->
-
-        {% comment %} <div class="profile">
-            <li class="nav-item dropdown dropdown-header">
-                <div class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/>
-                </div>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'icons/house-fill.svg' %}"> Home</a>
-                  <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
-                  <div class="dropdown-divider"></div>
-                    <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>
-                </div>
-              </li>
-        </div> {% endcomment %}
         </div>
-    </nav>
-
-
-
-                      <!-- Notification Section -->
-        <div class="column left border-left">
-          {% comment %} <span class="recentViews">Teacher</span> {% endcomment %}
-           <img class="teachericon center" src="{% static 'icons/user.svg' %}" alt="Teacher">
+ </nav>
+    <div class="pageBody">
+      <div class="row">
+        <div class="column left pageLeftbody">
+            <!--classes -->
+            <img class="teachericon center" src="{% static 'icons/user.svg' %}" alt="Teacher">
            <div class="list-group details">
             <span class="list-group-item list-group-item-action center ">Teacher Name</span>
             <a href="#" class="list-group-item list-group-item-action ">Semister</a>
@@ -52,12 +41,10 @@
             <a href="#" class="list-group-item list-group-item-action ">Semister</a>
             <a href="#" class="list-group-item list-group-item-action ">Semister</a>
             </div>
-            </ul><br>
+            <br>
             <button type="button" class="btn btn-outline-danger center">Sign Out</button>
         </div>
-
-
-
+        <div class=" col-sm-8 column right pageLeftbody">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A Sec</a>
@@ -72,53 +59,18 @@
             <div class="tab-content tab-container" id="myTabContent">
                 <!-- A Section Details -->
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
-                    <button type="button" class="btn btn-outline-info float-right">Students</button>
-                    <button type="button" class="btn btn-link float-right" id="notification" data-toggle="popover" title="Add Subject" data-content="Add subjects to this class ?"><img src="{% static 'icons/plus-circle-fill.svg' %}" alt="add subjects" width="20" height="25"> </button><br>     
-                    <div class="container mt-3">
-                    <h3>Tooltip Options</h3>
-                    <p>The <strong>delay</strong> option specifies the number of milliseconds it will take to hide the toast.</p>
-                    <p>In this example, it will take 2000 milliseconds to hide the toast, once it is shown. Click on the "Show Toast" button to see the effect.</p>
-
-
-                    <div class="toast mt-3">
-                        <div class="toast-header">
-                        Toast Header
-                        </div>
-                        <div class="toast-body">
-                        Some text inside the toast body
-                        </div>
-                    </div>
-                    </div>
-            
+                    <a href="{% url 'studentslist' %}" class="btn btn-outline-info float-right">Students</a>
+                    <a href="{% url 'createclass' slug='abhilash' %}" class="btn btn-link float-right" id="notification" data-toggle="popover" title="Add Subject" data-content="Add subjects to this class ?"><img src="{% static 'icons/plus-circle-fill.svg' %}" alt="add subjects" width="20" height="25"> </a><br>     
                         <div class="mx-auto">
-                            <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto"></h2>
+                        <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto"></h2>
                         </div>
-                        <div class="syllabus">
-                            <div class="card-group">
-                            <div class="card">
-                            <div class="input-group mb-3">
-                                <form action="#">
+                            <form action="#">
                             {% for topics in topic %}
                                 <input type="checkbox" value="{{ topics.section }}">
                                 <label for="vehicle1"> {{ topics.topic }} </label><br>
                             {%  endfor %}
                                 <input class="btn btn-primary" type="submit" value="Submit">
                             </form>
-                            </div>
-                            </div>
-                            <div class="card">
-                                <form action="#">
-                                <input type="checkbox" value="topic-1">
-                                <label for="vehicle1"> Topic - 1 </label><br>
-                                <input type="checkbox"  value="topic-1">
-                                <label for="vehicle2"> Topic - 1</label><br>
-                                <input type="checkbox"  value="topic-1">
-                                <label for="vehicle3"> Topic - 1</label><br><br>
-                                <input class="btn btn-primary" type="submit" value="Submit">
-                            </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!--B Sec details  -->
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -129,8 +81,10 @@
                     This is the content of C Section students
                 </div>
             </div>
+        </div>
 
-
+      </div>
+    </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

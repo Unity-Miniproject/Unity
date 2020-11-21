@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Bmsit_Students(models.Model):
+class Students(models.Model):
     SEMESTER = (
         ('1', 'First Semester'),
         ('2', 'Second Semester'),
@@ -37,4 +37,3 @@ class Bmsit_Students(models.Model):
 
     class Meta:
         verbose_name_plural = 'Students Details'
-

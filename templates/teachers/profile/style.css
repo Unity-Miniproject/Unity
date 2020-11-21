@@ -54,12 +54,8 @@ body{
     text-decoration: underline;
     font-weight: bold;
   }
-  .pagination{
-    padding-left: 100px;
-  }
   .syllabus{
     min-height: 70%;
-    width: 60%;
+    width: 80%;
     margin: 30px 30px 30px;
-    margin-left: 600px;
   }

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'teachers',
     'students',
     'subjects',
+    'videos',
     'django.contrib.sites',
     'allauth',
     'allauth.account',

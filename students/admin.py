@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Bmsit_Students
+from .models import Students
 
 # Register your models here.
 
@@ -11,4 +11,4 @@ class StudentDisplay(admin.ModelAdmin):
     list_display_links = ['usn', 'name', 'email', 'branch', 'semester']
 
 
-admin.site.register(Bmsit_Students, StudentDisplay)
+admin.site.register(Students, StudentDisplay)
