@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Students(models.Model):
+class StudentDetails(models.Model):
     SEMESTER = (
         ('1', 'First Semester'),
         ('2', 'Second Semester'),

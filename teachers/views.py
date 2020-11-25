@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from subjects.models import WtLab, AcA, ML, SaN, CC, MlLab, WT, project
-from students.models import Students
+from students.models import StudentDetails
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def teacherProfile(request):
 
 def studentsList(request):
     context = {
-        'students': Students.objects.all()
+        'students': StudentDetails.objects.all()
     }
     return render(request, 'teachers/studentsdetails/index.html', context)
 

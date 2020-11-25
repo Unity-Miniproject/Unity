@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'students',
     'subjects',
     'videos',
+    'corsheaders',
+    'rest_framework',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,7 +70,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates',
+                 os.path.join(BASE_DIR, 'posts/build')
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,7 +102,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'miniproject',
         'CLIENT': {
-           'host': 'localhost:27017',
+            'host': 'localhost:27017',
         }
     }
 }
@@ -138,7 +143,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'templates')
+    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'posts/build/static')
 ]
 MEDIA_URL = 'uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -153,6 +159,13 @@ SOCIAL_AUTH_PIPELINE = {
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 
+}
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
 
 ACCOUNT_EMAIL_REQUIRED = True

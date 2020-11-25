@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Students
+from .models import StudentDetails
 
 
 # Create your views here.
@@ -37,10 +37,10 @@ def viewProfile(request, slug):
     current_user = request.user
     try:
         context = {
-            'details': Students.objects.get(user_id=current_user.id)
+            'details': StudentDetails.objects.get(user_id=current_user.id)
         }
         return render(request, 'students/profile.html', context)
-    except Students.DoesNotExist:
+    except StudentDetails.DoesNotExist:
         return redirect('editprofile', slug)
 
 
@@ -48,14 +48,22 @@ def viewProfile(request, slug):
 def editProfile(request, slug):
     return render(request, 'students/editprofile.html')
 
+
 @login_required(redirect_field_name='login')
 def subjects(request, slug):
     return render(request, 'subjects/index.html')
+
 
 @login_required(redirect_field_name='login')
 def classes(request, slug):
     return render(request, 'subjects/index.html')
 
+
 @login_required(redirect_field_name='login')
 def assignments(request, slug):
     return render(request, 'assignments/index.html')
+
+
+@login_required(redirect_field_name='login')
+def notes(request, slug):
+    return render(request, 'notes/index.html')
