@@ -4,3 +4,5 @@
 .vscode/*
 */venv/*
 venv/*
+*/__pychche__/*
+__pychche__/*
