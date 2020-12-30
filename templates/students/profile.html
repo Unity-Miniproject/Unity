@@ -33,6 +33,7 @@
                 </div>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'icons/house-fill.svg' %}"> Home</a>
+                  <a class="dropdown-item" href="{% url 'home' %}"><img src="{% static 'icons/pencil-square.svg' %}"> Posts</a>
                   <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
                   <div class="dropdown-divider"></div>
                     <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>

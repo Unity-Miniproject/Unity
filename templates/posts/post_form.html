@@ -1,0 +1,20 @@
+
+{% block content %}
+    <div class="container rounded content-section mt-4" style="border: solid #b9cbf0 2px">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">New Post</legend>
+                <div id="div_id_title" class="form-group"> <label for="id_title" class=" requiredField">
+                Title</label> <div class=""> <input type="text" name="title" maxlength="50" class="textinput textInput form-control" required id="id_title"> </div> </div> <div id="div_id_content" class="form-group"> <label for="id_content" class=" requiredField">
+                Content</label> <div class=""> <textarea name="content" cols="40" rows="10" class="textarea form-control" required id="id_content">
+                </textarea> </div> </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info m-2" type="submit">Post</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+        </div>
+    </div>
+{% endblock %}

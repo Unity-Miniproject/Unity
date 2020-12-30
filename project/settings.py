@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'students',
     'subjects',
     'videos',
+    'posts',
     'corsheaders',
     'rest_framework',
     'django.contrib.sites',
