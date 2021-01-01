@@ -1,11 +1,37 @@
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image" sizes="16x16">
-    <title>edit profile</title>
-</head>
-<body>
+    {% block include %}
+        <title>edit profile</title>
+        <link rel="stylesheet" href="{% static 'students/profile.css' %}">
+    {% endblock include %}
+    {% block content %}
 
-</body>
-</html>
+    <div class="profile-display">
+        <img class="userprofile center" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="profile"/>    
+        <form>
+            <fieldset>
+                <div class="mb-3">
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.username }}">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Email</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.email }}">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Name</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.name }}">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Branch</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.branch }}">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Semister</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.semester }}">
+                </div>
+                <button type="submit" class="btn btn-primary ">Update</button>
+            </fieldset>
+        </form>
+    </div>
+
+    {% endblock content %}

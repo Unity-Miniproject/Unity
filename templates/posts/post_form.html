@@ -1,18 +1,20 @@
-{% extends "posts/base.html" %}
+{% extends "base.html" %}
+{%block include %}
+    <title>Post </title>
+{% endblock include%}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container rounded content-section mt-4" style="border: solid #b9cbf0 2px">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">New Post</legend>
+                <legend class="border-bottom mb-4">Post</legend>
                 {{ form.media }}
                 {{ form|crispy }}
-                </textarea> </div> </div>
-            </fieldset>
-            <div class="form-group">
                 <button class="btn btn-outline-info m-2" type="submit">Post</button>
+                </textarea> </div> 
             </div>
+            </fieldset>
         </form>
         <div class="border-top pt-3">
         </div>

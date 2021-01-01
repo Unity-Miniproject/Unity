@@ -50,7 +50,11 @@ def viewProfile(request, slug):
 
 @login_required(redirect_field_name='login')
 def editProfile(request, slug):
-    return render(request, 'students/editprofile.html')
+    current_user = request.user
+    context = {
+        'details': StudentDetails.objects.get(user_id=current_user.id)
+    }
+    return render(request, 'students/editprofile.html', context)
 
 
 @login_required(redirect_field_name='login')

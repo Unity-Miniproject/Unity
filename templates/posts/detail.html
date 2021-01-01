@@ -1,7 +1,9 @@
-{% extends "posts/base.html" %}
-
+{% extends "base.html" %}
+{%block include %}
+    <title>Update</title>
+{% endblock include%}
 {% block content %}
-    <div>
+        <div>
             <div class="card m-3 ms-5">
                 <div class="card-header">
                     <inline  class="card-title fs-3">{{ object.title }}</inline>
@@ -18,5 +20,5 @@
                     </blockquote>
                 </div>
             </div>
-    </div>
+        </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+.posts{
+    max-width: 30em;
+    margin:1em 25em;
+}
+
+.post-uname{
+    margin: 10px;
+}
+
+.post-update{
+    float: right;
+}

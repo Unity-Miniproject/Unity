@@ -1,64 +1,57 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image" sizes="16x16">
-    <title>{{ user.username.capitalize }}({{ user.email|cut:'@bmsit.in' }})</title>
-    <link rel="stylesheet" href="{% static 'students/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
-          <!--navbar to naviagte-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-bottom">
+    {% block include %}
+        <title>Profile({{ user.email.upper|cut:'@BMSIT.IN' }})</title>
+        <link rel="stylesheet" href="{% static 'students/profile.css' %}">
+    {% endblock include %}
+    {% block content %}
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a href="{% url 'profile' %}"><img class="logo" src="{% static 'images/bmslogo.png' %}" alt="logo"></a>
-            </li>
-             <li>
-                <nav class="navbar navbar-light bg-light">
-                    <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </nav>
-            </li>
-        </ul>
-        <div class="profile">
-            <li class="nav-item dropdown dropdown-header">
-                <div class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/>
+    <div class="profile-display">
+
+        <div class="container px-4">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3 border bg-light">        
+                    <img class="userprofile profile-position" src="{{ user.socialaccount_set.all.0.get_avatar_url }}"   alt="profile"/>    
+                        <center><a href="{% url 'editprofile' user.username %}">edit</a></center>
+                        <form>
+                            <fieldset disabled>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Username</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.username }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Email</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.email }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Name</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.name }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Branch</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.branch }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Semister</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.semester }}">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    </div>
+                        <div class="col">
+                            <div class="marks-cards">Marks Cards</div>
+                            <div class="p-3 border bg-light col-md-8">Semister-1 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-2 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-3 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-4 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-5 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-6 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-7 <a class="semister-view" href="">view</a></div><br>                        
                 </div>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'icons/house-fill.svg' %}"> Home</a>
-                  <a class="dropdown-item" href="{% url 'home' %}"><img src="{% static 'icons/pencil-square.svg' %}"> Posts</a>
-                  <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
-                  <div class="dropdown-divider"></div>
-                    <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>
-                </div>
-              </li>
+            </div>
         </div>
-        </div>
-    </nav>
+    </div>   
 
-        <div>
-            <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/><br>
-                Username : {{ user.username }}<br>
-                Email : {{ user.email }}<br>
-                Name : {{ details.name }}<br>
-                Branch : {{ details.branch }}<br>
-                Semister : {{ details.semester }}<br>
-        </div>
-
-        <div class="stud-profile">
-
-        </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-</body>
-</html>
+    {% endblock content %}
