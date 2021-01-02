@@ -1,3 +1,4 @@
+from django.db.models.fields import CharField
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_protect
@@ -8,7 +9,7 @@ from importlib import import_module, reload
 from django.contrib import admin
 from django.conf import settings
 from .models import Modelnames
-
+from django.utils.crypto import get_random_string
 # Create your views here.
 
 
@@ -32,7 +33,7 @@ def createModels(request):
             modelCreated = True
         except Exception as e:
             modelExists = True
-            return render(request, 'createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': modelName})
+            return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': modelName})
         len_req = (len(request.POST) - 2) // 5
         count = 0
         for x in range(len_req):
@@ -52,6 +53,62 @@ def createModels(request):
         reload(import_module(settings.ROOT_URLCONF))
         clear_url_caches()
     return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': modelName})
+
+#creating class using dynamic models
+
+def createClass(request):
+    modelExists = False
+    modelCreated = False
+    classCode = get_random_string(8)
+    if request.POST:
+        # className = request.POST['modelname']
+        try:
+            model_schema = ModelSchema.objects.create(
+                name=classCode )
+            modelCreated = True
+        except Exception as e:
+            modelExists = True
+            createClass()
+            return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': classCode})
+        field_schema = FieldSchema.objects.create(
+            name='Subject',
+            data_type='character',
+            model_schema=model_schema,
+            max_length=100,
+            null=False,
+            unique=False
+        )
+        field_schema = FieldSchema.objects.create(
+            name='Branch',
+            data_type='character',
+            model_schema=model_schema,
+            max_length=20,
+            null=False,
+            unique=False
+        )
+        field_schema = FieldSchema.objects.create(
+            name='Semester',
+            data_type='character',
+            model_schema=model_schema,
+            max_length=20,
+            null=False,
+            unique=False
+        )
+        field_schema = FieldSchema.objects.create(
+            name='Section',
+            data_type='character',
+            model_schema=model_schema,
+            max_length=20,
+            null=False,
+            unique=False
+        )
+        model_create = Modelnames.objects.create(
+            modelname=classCode)
+        reg_model = model_schema.as_model()
+        admin.site.register(reg_model)
+        reload(import_module(settings.ROOT_URLCONF))
+        clear_url_caches()
+    return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': classCode})
 
 
 def showObjectLists(request):
