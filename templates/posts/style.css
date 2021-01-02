@@ -10,3 +10,7 @@
 .post-update{
     float: right;
 }
+
+.new-post {
+    margin:1em 50px;
+}

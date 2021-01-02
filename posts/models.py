@@ -5,13 +5,13 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 # Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=50)
+    # title = models.CharField(max_length=50)
     content = RichTextField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.id
 
     def get_absolute_url(self):
         return reverse('detailed', kwargs={'pk': self.pk})

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'subjects',
     'videos',
     'posts',
+    'dynamic_models',
     'ckeditor',
     'crispy_forms',
     'corsheaders',

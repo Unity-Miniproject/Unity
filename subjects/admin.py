@@ -1,19 +1,9 @@
 from django.contrib import admin
-from .models import WtLab, AcA, ML, SaN, CC, MlLab, WT, project
-
+from dynamic_models.models import ModelSchema
+from .models import Modelnames
 
 # Register your models here.
-
-class TopicDisplay(admin.ModelAdmin):
-    list_display = ('section', 'topic')
-    list_display_links = ['section', 'topic']
-
-
-admin.site.register(WT, TopicDisplay)
-admin.site.register(AcA, TopicDisplay)
-admin.site.register(ML, TopicDisplay)
-admin.site.register(SaN, TopicDisplay)
-admin.site.register(CC, TopicDisplay)
-admin.site.register(MlLab, TopicDisplay)
-admin.site.register(WtLab, TopicDisplay)
-admin.site.register(project, TopicDisplay)
+models = Modelnames.objects.all()
+for model in models:
+    reg_model = ModelSchema.objects.get(name=model.modelname).as_model()
+    admin.site.register(reg_model)

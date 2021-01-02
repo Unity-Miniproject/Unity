@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http.response import Http404
 from django.shortcuts import render, redirect
-from subjects.models import WtLab, AcA, ML, SaN, CC, MlLab, WT, project
 from students.models import StudentDetails
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -25,7 +24,6 @@ def teachers(request):
 def teacherProfile(request):
 
     context = {
-        'topic': ML.objects.all()
     }
     return render(request, 'teachers/profile/index.html', context)
 
