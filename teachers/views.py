@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from students.models import StudentDetails
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
-
+from subjects.models import newClasses
 
 @login_required
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -24,6 +24,7 @@ def teachers(request):
 def teacherProfile(request):
 
     context = {
+        'classes' : newClasses.objects.filter(author=request.user)
     }
     return render(request, 'teachers/profile/index.html', context)
 
@@ -42,3 +43,10 @@ def createClass(request, slug):
 
     }
     return render(request, 'teachers/createclass/index.html')
+
+
+
+def viewClass(request, slug):
+    context = {
+    }
+    return render(request,'teachers/classdetails/index.html')

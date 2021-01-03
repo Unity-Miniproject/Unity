@@ -9,58 +9,44 @@
     <div class="pageBody">
       <div class="row">
         <div class="column left pageLeftbody">
-            <!--classes -->
-            <img class="teachericon center" src="{% static 'icons/user.svg' %}" alt="Teacher">
+            <!--classes --> 
+            <img class="center userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" hight=50 alt="Teacher"><br>
            <div class="list-group details">
-            <span class="list-group-item list-group-item-action center ">Teacher Name</span>
-            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
-            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
-            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
-            <a href="#" class="list-group-item list-group-item-action ">Semister</a>
+            <span class="list-group-item ">{{ user.username }}</span>
+            <span class="list-group-item ">{{ user.email }}</span>
+            
             </div>
             <br>
-            <a href="{% url 'logout' %}" class="btn btn-outline-danger center">Sign Out</a>
+            <center><a href="{% url 'logout' %}" class="btn btn-outline-danger center">Sign Out</a><center>
         </div>
-        <div class=" col-sm-8 column right pageLeftbody">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A Sec</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">B Sec</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">C Sec</a>
-            </li>
-            </ul>
-            <div class="tab-content tab-container" id="myTabContent">
-                <!-- A Section Details -->
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
-                    <a href="{% url 'studentslist' %}" class="btn btn-outline-info float-right">Students</a>
-                    <a href="{% url 'create_models' %}" class="btn btn-link float-right" id="notification" data-toggle="popover" title="Add Subject" data-content="Add subjects to this class ?"><img src="{% static 'icons/plus-circle-fill.svg' %}" alt="add subjects" width="20" height="25"> </a><br>     
-                        <div class="mx-auto">
-                        <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto"></h2>
-                        </div>
-                            <form action="#">
-                            {% for topics in topic %}
-                                <input type="checkbox" value="{{ topics.section }}">
-                                <label for="vehicle1"> {{ topics.topic }} </label><br>
-                            {%  endfor %}
-                                <input class="btn btn-primary" type="submit" value="Submit">
-                            </form>
-                </div>
-                <!--B Sec details  -->
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    This is the content of B Section students
-                </div>
-                <!-- C Sec Details -->
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    This is the content of C Section students
-                </div>
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
+            <a href="{% url 'studentslist' %}" class="btn btn-outline-info float-right">Students</a>
+            <a href="{% url 'create_models' %}" class="btn btn-link float-right" id="notification" data-toggle="popover" title="Add Subject" data-content="Add subjects to this class ?"><img src="{% static 'icons/plus-circle-fill.svg' %}" alt="add subjects" width="20" height="25"> </a><br>     
+            <div class="mx-auto">
+            <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto"></h2>
+        </div>
+            <form action="#">
+            {% for topics in topic %}
+                <input type="checkbox" value="{{ topics.section }}">
+                <label for="vehicle1"> {{ topics.topic }} </label><br>
+            {%  endfor %}
+            </form>
+            {% for val in classes %}
+            <div class="card " style="width: 18rem;">
+            <img src="{% static 'backgroundImages/1.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">
+                Class Code : {{ val.classId }},<br>
+                Name : {{ val.className }},<br>
+                Section : {{ val.classSection }},<br>
+                Branch : {{ val.classBranch }},<br>
+                Semester : {{ val.classSemester }},<br></p>
+                <a href="{% url 'viewclass' val.classId %}" class="btn btn-outline-primary">View</a>
             </div>
+            </div><br>
+            {% endfor%}
         </div>
-
       </div>
     </div>
     {% endif %}
-    {% endblock content %}
+{% endblock content %}

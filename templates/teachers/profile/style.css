@@ -59,3 +59,15 @@ body{
     width: 80%;
     margin: 30px 30px 30px;
   }
+
+  .userprofile {
+    border-radius: 50%;
+  }
+
+  .userprofile:hover {
+    -ms-transform: scale(1.05);
+    /* IE 9 */
+    -webkit-transform: scale(1.05);
+    /* Safari 3-8 */
+    transform: scale(1.05);
+  }

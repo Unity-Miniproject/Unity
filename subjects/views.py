@@ -1,3 +1,4 @@
+from students.views import subjects
 from django.db.models.fields import CharField
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
@@ -10,6 +11,9 @@ from django.contrib import admin
 from django.conf import settings
 from .models import Modelnames
 from django.utils.crypto import get_random_string
+from subjects.models import Section, Semester, Branch, newClasses
+import datetime
+from django.utils.timezone import utc
 # Create your views here.
 
 
@@ -61,7 +65,11 @@ def createClass(request):
     modelCreated = False
     classCode = get_random_string(8)
     if request.POST:
-        # className = request.POST['modelname']
+        classCode = classCode
+        className = request.POST['modelname']
+        classBranch = request.POST['classbranch']
+        classSemester = request.POST['classsemester']
+        classSection = request.POST['classsection']
         try:
             model_schema = ModelSchema.objects.create(
                 name=classCode )
@@ -69,9 +77,17 @@ def createClass(request):
         except Exception as e:
             modelExists = True
             createClass()
-            return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': classCode})
+            context = {
+                'modelExists': modelExists,
+                'modelCreated': modelCreated, 
+                'modelName': classCode,
+                'branch' : Branch.objects.all(),
+                'section': Section.objects.all(),
+                'semester': Semester.objects.all(),
+                }
+            return render(request, 'dynamic_models/createModels.html',context)
         field_schema = FieldSchema.objects.create(
-            name='Subject',
+            name='Topics',
             data_type='character',
             model_schema=model_schema,
             max_length=100,
@@ -79,36 +95,41 @@ def createClass(request):
             unique=False
         )
         field_schema = FieldSchema.objects.create(
-            name='Branch',
-            data_type='character',
+            name='Video Link',
+            data_type='url',
             model_schema=model_schema,
-            max_length=20,
-            null=False,
-            unique=False
+            null=True,
         )
         field_schema = FieldSchema.objects.create(
-            name='Semester',
-            data_type='character',
+            name='Completed Date',
+            data_type='date',
             model_schema=model_schema,
-            max_length=20,
-            null=False,
-            unique=False
+            null=True,
         )
         field_schema = FieldSchema.objects.create(
-            name='Section',
-            data_type='character',
+            name='Discription',
+            data_type='richtext',
             model_schema=model_schema,
-            max_length=20,
-            null=False,
-            unique=False
+            null=True,
         )
         model_create = Modelnames.objects.create(
             modelname=classCode)
         reg_model = model_schema.as_model()
         admin.site.register(reg_model)
-        reload(import_module(settings.ROOT_URLCONF))
+        reload(import_module(settings.ROOT_URLCONF))    
+        newClasses.objects.create(classId=classCode,
+                                  className=className, classSection=classBranch, classBranch=classSemester, classSemester=classSection, author=request.user, createdDate=datetime.datetime.utcnow().replace(tzinfo=utc))
         clear_url_caches()
-    return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': classCode})
+        
+    context={
+        'modelExists': modelExists, 
+        'modelCreated': modelCreated, 
+        'modelName': classCode,
+        'branch': Branch.objects.all(),
+        'section': Section.objects.all(),
+        'semester': Semester.objects.all(),
+        }
+    return render(request, 'dynamic_models/createModels.html',context)
 
 
 def showObjectLists(request):

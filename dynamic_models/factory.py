@@ -1,10 +1,11 @@
 from django.db import models
+from django.db.models.fields import URLField
 from django.utils import timezone
 
 from dynamic_models import config
 from dynamic_models.exceptions import OutdatedModelError
 from dynamic_models.utils import ModelRegistry
-
+from ckeditor.fields import RichTextField
 
 
 class ModelFactory:
@@ -82,6 +83,8 @@ class FieldFactory:
         'float': models.FloatField,
         'boolean': models.BooleanField,
         'date': models.DateTimeField,
+        'richtext' : RichTextField,
+        'url': models.SlugField,
     }
 
     def __init__(self, field_schema):
