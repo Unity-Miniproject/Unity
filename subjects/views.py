@@ -25,38 +25,6 @@ def base(request):
     return render(request, 'base.html')
 
 
-def createModels(request):
-    modelExists = False
-    modelCreated = False
-    modelName = ''
-    if request.POST:
-        modelName = request.POST['modelname']
-        try:
-            model_schema = ModelSchema.objects.create(
-                name=request.POST['modelname'])
-            modelCreated = True
-        except Exception as e:
-            modelExists = True
-            return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': modelName})
-        len_req = (len(request.POST) - 2) // 5
-        count = 0
-        for x in range(len_req):
-            count = count + 1
-            field_schema = FieldSchema.objects.create(
-                name=request.POST['field' + str(count)],
-                data_type=request.POST['datatype' + str(count)],
-                model_schema=model_schema,
-                max_length=request.POST['maxlen' + str(count)],
-                null=request.POST['null' + str(count)],
-                unique=request.POST['unique' + str(count)]
-            )
-        model_create = Modelnames.objects.create(
-            modelname=request.POST['modelname'])
-        reg_model = model_schema.as_model()
-        admin.site.register(reg_model)
-        reload(import_module(settings.ROOT_URLCONF))
-        clear_url_caches()
-    return render(request, 'dynamic_models/createModels.html', context={'modelExists': modelExists, 'modelCreated': modelCreated, 'modelName': modelName})
 
 #creating class using dynamic models
 
@@ -118,7 +86,7 @@ def createClass(request):
         admin.site.register(reg_model)
         reload(import_module(settings.ROOT_URLCONF))    
         newClasses.objects.create(classId=classCode,
-                                  className=className, classSection=classBranch, classBranch=classSemester, classSemester=classSection, author=request.user, createdDate=datetime.datetime.utcnow().replace(tzinfo=utc))
+                                  className=className, classSection=classSection, classBranch=classBranch, classSemester=classSemester, author=request.user, createdDate=datetime.datetime.utcnow().replace(tzinfo=utc))
         clear_url_caches()
         
     context={
@@ -160,4 +128,7 @@ def showObjectLists(request):
             'objectType': request.POST['modelname'],
             'get': False
         }
-    return render(request, 'displayObjects.html', context=cont_dict)
+    return render(request, 'teachers/classdetails/index.html', context=cont_dict)
+
+
+

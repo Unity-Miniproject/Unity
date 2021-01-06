@@ -8,48 +8,26 @@
       <div class="row">
         <div class="column left pageLeftbody">
             <!--classes -->
+            {% for val in classes %}
             <div class="card shadow-lg p-3 mb-5 bg-white rounded classes" style="width: 18rem;">
                 <img src="{% static 'images/bmslogo.png' %}" class="card-img-top" alt="class">
                     <div class="card-body">
                         <p class="card-text">
-                        <a href="{% url 'subjects' user.username %}">Subject </a>
-                        <a href="">Semister </a> 
+                        Class Name : {{ val.className|title }}
+                        Semester : {{ val.classSemester }} 
                             <ul class="classinfo">
                                 <li>
-                                    <a href="{% url 'classes' user.username %}">Classes</a>
+                                    <a href="{% url 'subjects' val %}">Classes</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'assignments' user.username %}">Assignment</a>
+                                    <a href="{% url 'assignments' val %}">Assignment</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'notes' user.username %}">Notes</a>
+                                    <a href="{% url 'notes' val %}">Notes</a>
                                 </li>
-                            </ul>
-                        </p>
                     </div>
             </div>
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded classes" style="width: 18rem;">
-                <img src="{% static 'images/bmslogo.png' %}" class="card-img-top" alt="class">
-                    <div class="card-body">
-                        <p class="card-text">
-                            Subject-name
-                            Semister
-                            <ul class="classinfo">
-                                <li>
-                                    <a href="">Classes</a>
-                                </li>
-                                <li>
-                                    <a href="">Assignment</a>
-                                </li>
-                                <li>
-                                    <a href="">Notes</a>
-                                </li>
-                            </ul>
-                        </p>
-                    </div>
-            </div>
-
-
+            {% endfor %}
 
 
         </div>

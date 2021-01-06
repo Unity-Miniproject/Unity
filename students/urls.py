@@ -7,8 +7,8 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path('profile/<slug:slug>', views.viewProfile, name='profile'),
     path('<slug:slug>/editprofile', views.editProfile, name='editprofile'),
+    path('<slug:slug>/updateprofile', views.updateprofile, name='updateprofile'),
     path('subject/<slug:slug>/', views.subjects, name='subjects'),
-    path('<slug:slug>/classes', views.classes, name='classes'),
     path('<slug:slug>/assignments', views.assignments, name='assignments'),
     path('<slug:slug>/notes', views.notes, name='notes'),
 ]

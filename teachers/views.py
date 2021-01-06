@@ -5,6 +5,14 @@ from students.models import StudentDetails
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from subjects.models import newClasses
+from subjects.models import Modelnames
+from dynamic_models.models import ModelSchema, FieldSchema
+import datetime
+from django.urls import clear_url_caches
+from django.utils.timezone import utc
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 
 @login_required
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -45,8 +53,33 @@ def createClass(request, slug):
     return render(request, 'teachers/createclass/index.html')
 
 
-
 def viewClass(request, slug):
-    context = {
+    if request.POST:
+        classtopic = request.POST.get('syllabustopic')
+        video_link = request.POST.get('videolink')
+        topic_desc = request.POST.get('topicdescription')
+        date_time = datetime.datetime.utcnow()
+        topicupdate = ModelSchema.objects.get(name=slug).as_model()
+        topicupdate.objects.create(
+            topics=classtopic,
+            video_link=video_link,
+            completed_date=date_time,
+            discription=topic_desc
+        )
+        clear_url_caches()
+    model = ModelSchema.objects.get(name=slug).as_model()
+    objList = model.objects.all().values()
+    fieldNames = list()
+    noEntry = False
+    try:
+        for x in objList[0]:
+            fieldNames.append(x)
+    except Exception as e:
+        noEntry = True
+    cont_dict = {
+        'objects': objList,
+        'noEntry': noEntry,
+        'fieldNames': fieldNames,
+        'objectType': slug,
     }
-    return render(request,'teachers/classdetails/index.html')
+    return render(request, 'teachers/classdetails/index.html', context=cont_dict)

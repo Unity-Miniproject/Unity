@@ -13,7 +13,7 @@
                 <div class="col">
                     <div class="p-3 border bg-light">        
                     <img class="userprofile profile-position" src="{{ user.socialaccount_set.all.0.get_avatar_url }}"   alt="profile"/>    
-                        <center><a href="{% url 'editprofile' user.username %}">edit</a></center>
+                        <center><a href="{% url 'updateprofile' user.username %}">edit</a></center>
                         <form>
                             <fieldset disabled>
                                 <div class="mb-3">
@@ -36,6 +36,10 @@
                                     <label for="disabledTextInput" class="form-label">Semister</label>
                                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.semester }}">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Section</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.section }}">
+                                </div>
                             </fieldset>
                         </form>
                     </div>
@@ -49,6 +53,7 @@
                             <div class="p-3 border bg-light col-md-8">Semister-5 <a class="semister-view" href="">view</a></div><br>
                             <div class="p-3 border bg-light col-md-8">Semister-6 <a class="semister-view" href="">view</a></div><br>
                             <div class="p-3 border bg-light col-md-8">Semister-7 <a class="semister-view" href="">view</a></div><br>                        
+                            <div class="p-3 border bg-light col-md-8">Semister-8 <a class="semister-view" href="">view</a></div><br>                        
                 </div>
             </div>
         </div>

@@ -1,1 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block include %}
+    <title>Class Details</title>
+{% endblock include %}
+
+{% block content %}
+    <br>
+    {% for val in classDetails%}
+        <div class="container">
+            <div class="alert shadow-lg p-3 mb-5 bg-white" role="alert">
+                <strong>{{ val.topics }}</strong><br>
+                <strong>Video Link </strong> : Click <a target="_blank" href="{% url 'playvideo' val.video_link %}">here</a>  to view the Video
+                {{ val.discription|safe }}
+                <hr>
+                {{ val.completed_date }}
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+
+{% endblock content %}

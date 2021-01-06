@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import createClass, createModels, base, addModelEntries, showObjectLists
+from .views import createClass, base, addModelEntries, showObjectLists
 
 urlpatterns = [
     path('baseApp/', base, name='base_app'),

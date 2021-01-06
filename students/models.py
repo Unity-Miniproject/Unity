@@ -24,12 +24,18 @@ class StudentDetails(models.Model):
         ('TCE', 'Telecommunications Engineering'),
         ('EEE', 'Electrical and Electronics Engineering'),
     )
+    SECTION = (
+        ('A', 'A Section'),
+        ('B', 'B Section'),
+        ('C', 'C Section'),
+    )
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     usn = models.CharField(max_length=10, primary_key=True, blank=True)
     name = models.CharField(max_length=60, blank=True)
     email = models.EmailField(max_length=254, )
     semester = models.CharField(max_length=1, choices=SEMESTER, blank=True)
     branch = models.CharField(max_length=10, choices=BRANCHES, blank=True)
+    section = models.CharField(max_length=1, choices=SECTION, blank=True)
     profile = models.ImageField(upload_to='uploads', blank=True)
 
     def __str__(self):

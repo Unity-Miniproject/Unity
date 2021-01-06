@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
     {% block include %}
-        <title>edit profile</title>
+        <title>Update profile</title>
         <link rel="stylesheet" href="{% static 'students/profile.css' %}">
     {% endblock include %}
     {% block content %}
 
     <div class="profile-display">
         <img class="userprofile center" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="profile"/><br>
-        <form method='post'>
-        {% csrf_token %}
+        <form methos='post'>
             <fieldset disabled>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Username</label>
@@ -19,18 +18,14 @@
                     <label for="disabledTextInput" class="form-label">Email</label>
                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.email }}">
                 </div>
-                </fieldset>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Name</label>
-                    <input type="text" name='studentname' class="form-control" placeholder="Enter your name ">
-                </div> 
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Usn</label>
-                    <input type="text" name='studentusn' class="form-control" placeholder="Usn ">
-                </div> 
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.name }}">
+                </div>
+                </fieldset>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Branch</label>
-                    <select class="form-control form-control-lg" name="studentbranch" aria-label="Branch" placeholder="Branch">
+                    <select class="form-control form-control-lg" name="classbranch" aria-label="Branch" placeholder="Branch">
                     <option >Select Branch</option>
                     {% for val in branch%}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
@@ -39,7 +34,7 @@
                 </div>
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Semester</label>
-                <select class="form-control form-control-lg" name="studentsemester" aria-label="Semester">
+                <select class="form-control form-control-lg" name="classsemester" aria-label="Semester">
                     <option >Select Semester</option>
                         {% for val in semester%}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
@@ -48,7 +43,7 @@
                 </div>
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Section</label>
-                <select class="form-control form-control-lg" name="studentsection" aria-label="Section">
+                <select class="form-control form-control-lg" name="classsection" aria-label="Section">
                     <option >Select Section</option>
                     {% for val in section %}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>

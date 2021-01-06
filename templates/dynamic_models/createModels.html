@@ -31,16 +31,19 @@
             {% csrf_token %}
             <input class="form-control form-control-lg" type="text" required="required" name="modelname" placeholder="Enter classname"/><br>
             <select class="form-control form-control-lg" name="classbranch" aria-label="Branch" placeholder="Branch">
+                <option >Select Branch</option>
                 {% for val in branch%}
                   <option value="{{ val.name }}">{{ val.fullname}}</option>
                 {% endfor %}
             </select><br>
             <select class="form-control form-control-lg" name="classsemester" aria-label="Semester">
+                <option >Select Semester</option>
                 {% for val in semester%}
                 <option value="{{ val.name }}">{{ val.fullname}}</option>
                 {% endfor %}
             </select><br>
             <select class="form-control form-control-lg" name="classsection" aria-label="Section">
+              <option >Select Section</option>
                {% for val in section %}
                 <option value="{{ val.name }}">{{ val.fullname}}</option>
                 {% endfor %}
