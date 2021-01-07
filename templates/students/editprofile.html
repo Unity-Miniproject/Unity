@@ -22,15 +22,15 @@
                 </fieldset>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Name</label>
-                    <input type="text" name='studentname' class="form-control" placeholder="Enter your name ">
+                    <input type="text" name='studentname' class="form-control" placeholder="Enter your name " required>
                 </div> 
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Usn</label>
-                    <input type="text" name='studentusn' class="form-control" placeholder="Usn ">
+                    <input type="text" name='studentusn' class="form-control" placeholder="Usn" required>
                 </div> 
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Branch</label>
-                    <select class="form-control form-control-lg" name="studentbranch" aria-label="Branch" placeholder="Branch">
+                    <select class="form-control form-control-lg" name="studentbranch" aria-label="Branch" placeholder="Branch" required>
                     <option >Select Branch</option>
                     {% for val in branch%}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Semester</label>
-                <select class="form-control form-control-lg" name="studentsemester" aria-label="Semester">
+                <select class="form-control form-control-lg" name="studentsemester" aria-label="Semester" required>
                     <option >Select Semester</option>
                         {% for val in semester%}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Section</label>
-                <select class="form-control form-control-lg" name="studentsection" aria-label="Section">
+                <select class="form-control form-control-lg" name="studentsection" aria-label="Section" required>
                     <option >Select Section</option>
                     {% for val in section %}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>

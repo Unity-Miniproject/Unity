@@ -39,7 +39,6 @@ def profile(request):
             details = StudentDetails.objects.get(user_id=request.user.id)
             if login_required():
                 context = {
-                        
                     'classes': newClasses.objects.filter(classBranch=details.branch, classSemester=details.semester, classSection=details.section)
                 }
                 return render(request, 'students/dashboard.html', context)
@@ -77,8 +76,9 @@ def editProfile(request, slug):
                 section=studentSection, 
                 branch=studentBranch, 
                 semester=studentSemester)
+            return render(request, 'students/dashboard.html')
     except DatabaseError:
-        return render(request, '404.html')
+        return render(request, 'errorpage/index.html')
     context = {
         'branch': Branch.objects.all(),
         'semester': Semester.objects.all(),
@@ -113,9 +113,25 @@ def notes(request, slug):
 
 
 def updateprofile(request, slug):
-    current_user = request.user
+    if request.POST:
+        try:
+            t = StudentDetails.objects.get(user_id=request.user.id)
+            studentName = request.POST['studentname']
+            studentUsn = request.POST['studentusn']
+            studentBranch = request.POST['studentbranch']
+            studentSemester = request.POST['studentsemester']
+            studentSection = request.POST['studentsection']
+            t.usn=studentUsn,
+            t.email=request.user.email,
+            t.name=studentName, 
+            t.section=studentSection, 
+            t.branch=studentBranch, 
+            t.semester=studentSemester
+            t.save()
+        except DatabaseError:
+            return render(request, 'errorpage/index.html')
     context = {
-        'details': StudentDetails.objects.get(user_id=current_user.id),
+        'details': StudentDetails.objects.get(user_id=request.user.id),
         'branch' : Branch.objects.all(),
         'semester' : Semester.objects.all(),
         'section' : Section.objects.all(),
