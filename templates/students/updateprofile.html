@@ -31,7 +31,7 @@
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Branch</label>
                     <select class="form-control form-control-lg" name="studentbranch" aria-label="Branch" placeholder="Branch" required>
-                    <option >Select Branch</option>
+                    <option >{{ details.branch }}</option>
                     {% for val in branch%}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
                     {% endfor %}
@@ -40,8 +40,8 @@
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Semester</label>
                 <select class="form-control form-control-lg" name="studentsemester" aria-label="Semester" required>
-                    <option >Select Semester</option>
-                        {% for val in semester%}
+                    <option >{{ details.semester }}</option>
+                        {% for val in semester %}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
                         {% endfor %}
                     </select>
@@ -49,7 +49,7 @@
                 <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Section</label>
                 <select class="form-control form-control-lg" name="studentsection" aria-label="Section" >
-                    <option >Select Section</option>
+                    <option >{{ details.section }}</option>
                     {% for val in section %}
                         <option value="{{ val.name }}">{{ val.fullname}}</option>
                         {% endfor %}
