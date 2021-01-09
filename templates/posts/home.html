@@ -2,26 +2,48 @@
 {% load static %}
 {%block include %}
     <title>Posts</title>
-    <link rel="stylesheet" href="{% static 'posts/style.css' %}">
+    <link rel="stylesheet" href="{% static 'posts/post.css' %}">
 {% endblock include %}
 {% block content %}
+
     <div class="new-post">
-        <a href="{% url 'new' %}" class="btn btn-outline-info float-right">Add new post</a>
+        <a href="{% url 'new' %}" class="btn btn-outline-info float-right">Ask a question</a>
+        <a href="{% url 'profile' %}" class="btn btn-outline btn-outline-primary float-left">Dashboard</a>
     </div>
+
+    
     {% for post in posts %}
-        <div class="card mb-3 posts ">
-            <div class="card-header bg-transparent ">
-                <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="30" height="30"  alt="profile"/>
-                <span  class="card-title fs-3 post-uname" style="text-decoration: none;">{{ post.author }}</span>
-                <a href="{% url 'detailed' post.id %}"><img class="post-update" src="{% static 'icons/three-dots-vertical.svg' %}"></a>
-            </div>
-                <div class="card-body text-secondary post-content" >                   
-                    <p class="card-text">{{ post.content|safe }}</p>
+            <div class="card posts shadow-lg p-3 mb-5 bg-white rounded border border-primary">
+                <div class="row">
+                <div class="col-sm-9">
+                <div>
+                    <div class="card-body">
+                        {{ post.question|safe }}
+                    </div>
+                    </div>
                 </div>
-            <div class="card-footer bg-transparent ">
-                <P class="blockquote fs-6"><span title="Source Title">{{ post.date_posted|date:'F d Y' }}</span></P>
+                <div class=" col-3 p-4 ">
+                    <span  class="card-title fs-3 post-uname" style="text-decoration: none;">{{ post.author }}</span> 
+                    <img class="userprofile " src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="30" height="30"  alt="profile"/>
+                    <a href="{% url 'detailed' post.id %}"><img class="post-update" src="{% static 'icons/three-dots-vertical.svg' %}"></a>
+                </div>
+                <div class=" col-sm-9 m-3"><hr>
+                <div class="card-body">
+                {% if post.answer1 is None%}
+                {% comment %} {% ifnotequal form.instance.author  self.request.user %} {% endcomment %}
+                    <a href="{% url 'answer' post.id %}" type="button" class="btn btn-outline-primary">Answer</a>
+                {% comment %} {% endifnotequal %} {% endcomment %}
+                {% else %}
+                <b>Ans :</b>
+                    {{ post.answer1|safe }}
+                {% endif %}
+
+                </div>
+                </div>
+                
+                </div>
             </div>
-        </div>
+            
     {% endfor %}
 {% endblock %}
 

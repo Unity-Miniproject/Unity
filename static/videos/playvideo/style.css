@@ -1,0 +1,8 @@
+.videoplayer{
+    height: 500px;
+    width: 500px;
+    background-color: blue;
+}
+.video-content{
+    margin-left: 10px;
+}

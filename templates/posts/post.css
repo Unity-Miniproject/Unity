@@ -1,0 +1,28 @@
+.posts {
+    width: 50em;
+    min-height: 0em;
+    margin: 1em 25em;
+}
+
+.post-uname {
+    margin: 10px;
+}
+
+.post-update {
+    float: right;
+}
+
+.new-post {
+    margin: 1em 50px;
+}
+
+.question {
+    padding:0 0 0 1em;
+}   
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block include %}
+        <title>Profile({{ user.email.upper|cut:'@BMSIT.IN' }})</title>
+        <link rel="stylesheet" href="{% static 'students/profile.css' %}">
+    {% endblock include %}
+    {% block content %}
+
+    <div class="profile-display">
+
+        <div class="container px-4">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3 border bg-light">        
+                    <img class="userprofile profile-position" src="{{ user.socialaccount_set.all.0.get_avatar_url }}"   alt="profile"/>    
+                        <center><a href="{% url 'updateprofile' user.username %}">edit</a></center>
+                        <form>
+                            <fieldset disabled>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Username</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.username }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Email</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ user.email }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Name</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.name }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Branch</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.branch }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Semister</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.semester }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledTextInput" class="form-label">Section</label>
+                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ details.section }}">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    </div>
+                        <div class="col">
+                            <div class="marks-cards">Marks Cards</div>
+                            <div class="p-3 border bg-light col-md-8">Semister-1 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-2 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-3 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-4 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-5 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-6 <a class="semister-view" href="">view</a></div><br>
+                            <div class="p-3 border bg-light col-md-8">Semister-7 <a class="semister-view" href="">view</a></div><br>                        
+                            <div class="p-3 border bg-light col-md-8">Semister-8 <a class="semister-view" href="">view</a></div><br>                        
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    {% endblock content %}

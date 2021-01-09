@@ -1,0 +1,103 @@
+{% extends "teachers/base.html" %}
+{% load static %}
+{% block include %}
+  <title>Class Details</title>
+  <link rel="stylesheet" href="{% static 'teachers/classdetails/style.css' %}">
+
+{% endblock include %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if request.user.is_staff %}
+<div class="container">
+<br>
+{% comment %}  {% endcomment %}
+<button class="btn btn-outline-info float-right" onclick="openForm()">Update Status</button>
+
+    <h2 class='text-center h2text'><u>Syllabus Completed</u></h2>
+    {% if noEntry %}
+      <h4 class="text-center mt-5">You have not updated any Status. Please update it with the <u><b>Update Status</b></u> Button. </h4>
+    {% else %}
+      <div class="table-responsive-sm">
+            <table class="table">
+              <thead>
+                <tr>
+                  {% for field in fieldNames %}
+                      {% if field == 'id' %}
+                        <th scope="col">Sl.No</th>
+                      {% elif field == 'topics' %}
+                        <th scope="col">Topic</th>
+                      {% elif field == 'video_link' %}
+                        <th scope="col">Video Link</th>
+                      {% elif field == 'completed_date' %}
+                        <th scope="col">Completed Date</th>
+                      {% elif field == 'discription' %}
+                        <th scope="col">Topic Description</th>
+
+
+                      {% endif %}
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for x in objects %}
+                  <tr>
+                    {% for property,value in x.items %}
+                      {% if property == 'id' %}
+                        <th scope="row">{{ value }}</th>
+                      {% elif property == 'topics' %}
+                        <td>{{ value|safe }}</td>
+                      {% elif property == 'video_link' %}
+                      <td><a target="_blank" href="{% url 'playvideo' value|safe %}">View</a></td>
+                      {% elif property == 'completed_date' %}
+                      <td>{{ value|safe }}</td>
+                      {% elif property == 'discription' %}
+                      <td>{{ value|safe }}</td>
+                      {% endif %}
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    {% endif %}
+  </div>
+
+{% comment %} Form for updating the status of the syllabus {% endcomment %}
+<div class="form-popup shadow-lg p-3 mb-5 bg-white rounded" id="myForm">
+  <form action="{% url 'viewclass' objectType %}" class="card-header"  method="POST">
+  {% csrf_token %}
+    <h1>Topic</h1>
+     <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Topic Name</label>
+      <input type="text" class="form-control" name='syllabustopic' placeholder="Enter topic" required>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Video Link</label>
+      <input type="text" class="form-control"  name='videolink' placeholder="Enter video link" required>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Description</label>
+      <input type="text" class="form-control" name='topicdescription' placeholder="Enter topic description" required>
+    </div> 
+    {{ form.media }}
+    {% comment %} {{ form|crispy }} {% endcomment %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-light" onclick="closeForm()">Close</button>
+  </form>
+</div>
+{% else %}
+
+
+You are not allowed to view this page
+{% endif %}
+{% comment %} Script to open popup form {% endcomment %}
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+{% endblock content %}

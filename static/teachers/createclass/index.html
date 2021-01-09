@@ -1,0 +1,25 @@
+{% extends 'teachers/base.html' %}
+{% load static %}
+{% block include %}
+
+<title>new class</title>
+<link rel="stylesheet" href="{% static 'teachers/createclass/style.css' %}">
+
+{% endblock include %}
+
+{% block content %}
+{% if request.user.is_staff %}
+    classcode : {{ modelName }}
+    <div class="shadow-lg p-3 mb-5 w-25 bg-white rounded classcreate">
+    <img src="{% static 'images/bmslogo.png' %}" class="card-img-top" alt="class">
+        <form>
+          {% csrf_token %}
+            <input class="form-control form-control-lg " type="text" placeholder="Subject"><br>
+            <input class="form-control form-control-lg" type="text" placeholder="Branch"><br>
+            <input class="form-control form-control-lg" type="text" placeholder="Section"><br>
+            <input class="form-control form-control-lg" type="text" placeholder="Students"><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock content %}
