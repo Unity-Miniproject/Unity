@@ -1,0 +1,98 @@
+{% extends 'teachers/base.html' %}
+{% load static %}
+
+{% comment %} including title and custom css file {% endcomment %}
+{% block include %}
+    <title>Notes</title>
+    <link rel="stylesheet" href="{% static 'teachers/notes/style.css' %}">
+{% endblock include %}
+{% if request.user.is_staff %}
+{% block content %}
+{% comment %} nabar for navigation {% endcomment %}
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Students</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+    <a class="navbar-brand" href="{% url 'profile' %}">
+      <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="profile" width="30" height="30" class="d-inline-block align-top rounded">
+    </a> 
+  </div>
+</nav>
+<div class="qaupdate">
+  <button class="btn btn-outline-info float-right" onclick="openqForm()">Update Q & A</button>
+</div>
+{% comment %} notes body {% endcomment %}
+    {% if noEntry %}
+      <h4 class="text-center mt-5">You have not updated any Status. Please update it with the <u><b>Update Status</b></u> Button. </h4>
+    {% else %}
+    {% for val in objects %}
+                <div class="card posts shadow-lg p-3 mb-5 bg-white rounded border border-primary">
+                <div class="row">
+                <div class="col-sm-9">
+                <div>
+                    <div class="card-body">
+                        {% comment %} {{val.id}}  {% endcomment %}
+                        {{ val.question|safe }}
+                    </div>
+                    </div>
+                </div>
+                <div class=" col-3 p-4 ">
+                    <span  class="card-title fs-3 post-uname" style="text-decoration: none;">{{ post.author }}</span> 
+                </div>
+                <div class=" col-sm-9 m-3"><hr>
+                <div class="card-body">
+                <b>Ans :</b>
+                    {{ val.answer|safe }}
+                </div>
+                </div>
+                
+                </div>
+            </div>
+    {% endfor %}
+    {% endif %}
+{% comment %} form for question and answer {% endcomment %}
+
+<div id="questionform" class="form-popup shadow-lg p-3 mb-5 bg-white rounded float-start">
+  <form action="{% url 'classnotes' objectType %}" class="card-header"  method="POST">
+  {% csrf_token %}
+    <h1>Topic</h1>
+     <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Question</label>
+      <input type="text" class="form-control" name='classnotesquestion' placeholder="Enter question" required>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Answer</label>
+      <textarea type="text" class="form-control"  name='classnotesquestion' placeholder="Enter answer" style="height: 30em" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-light" onclick="closeqForm()">Close</button>
+  </form>
+</div> 
+
+<script>
+function openqForm() {
+  document.getElementById("questionform").style.display = "block";
+}
+
+function closeqForm() {
+  document.getElementById("questionform").style.display = "none";
+}
+</script>
+
+{% endblock content %}
+{% endif %}

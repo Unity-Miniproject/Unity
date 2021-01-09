@@ -62,6 +62,7 @@ body{
 
   .userprofile {
     border-radius: 50%;
+    width: 30px;
   }
 
   .userprofile:hover {

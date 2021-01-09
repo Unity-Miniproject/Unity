@@ -8,11 +8,37 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% if request.user.is_staff %}
+{% comment %} nabar for navigation {% endcomment %}
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'classnotes' classnotes %}">Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Students</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+    <a class="navbar-brand" href="{% url 'profile' %}">
+      <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="profile" width="30" height="30" class="d-inline-block align-top rounded">
+    </a>
+  </div>
+</nav>
+
 <div class="container">
 <br>
 {% comment %}  {% endcomment %}
 <button class="btn btn-outline-info float-right" onclick="openForm()">Update Status</button>
-
+<a href="{% url 'classnotes' classnotes %}" class="btn btn-outline-info float-left">Update Q & A</a>
     <h2 class='text-center h2text'><u>Syllabus Completed</u></h2>
     {% if noEntry %}
       <h4 class="text-center mt-5">You have not updated any Status. Please update it with the <u><b>Update Status</b></u> Button. </h4>
@@ -32,8 +58,6 @@
                         <th scope="col">Completed Date</th>
                       {% elif field == 'discription' %}
                         <th scope="col">Topic Description</th>
-
-
                       {% endif %}
                   {% endfor %}
                 </tr>
@@ -85,6 +109,8 @@
     <button type="button" class="btn btn-light" onclick="closeForm()">Close</button>
   </form>
 </div>
+
+
 {% else %}
 
 
@@ -98,6 +124,13 @@ function openForm() {
 
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
+}
+function openqForm() {
+  document.getElementById("questionform").style.display = "block";
+}
+
+function closeqForm() {
+  document.getElementById("questionform").style.display = "none";
 }
 </script>
 {% endblock content %}

@@ -4,52 +4,64 @@
     <title>Teacher</title>
     <link rel="stylesheet" href="{% static 'teachers/profile/style.css' %}">
 {% endblock include %}
-{% block content %}
 {% if request.user.is_staff %}
-    <div class="pageBody">
-      <div class="row">
-        <div class="column left pageLeftbody">
-            <!--classes --> 
-            <img class="center userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" hight=50 alt="Teacher"><br>
-           <div class="list-group details">
-            <span class="list-group-item ">{{ user.username }}</span>
-            <span class="list-group-item ">{{ user.email }}</span>
-            
-            </div>
-            <br>
-            <center><a href="{% url 'logout' %}" class="btn btn-outline-danger center">Sign Out</a><center>
+{% block content %}
+{% comment %} Navbar for navigation through the site  {% endcomment %}
+        <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Students</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            </ul>
+            <a class="navbar-brand" href="{% url 'profile' %}">
+            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="profile" width="30" height="30" class="d-inline-block align-top rounded">
+            </a> 
         </div>
+        </nav>
+        {% comment %} create class {% endcomment %}
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
             <a href="{% url 'studentslist' %}" class="btn btn-outline-info float-right">Students</a>
             <a href="{% url 'create_models' %}" class="btn btn-link float-right" id="notification" data-toggle="popover" title="Add Subject" data-content="Add subjects to this class ?"><img src="{% static 'icons/plus-circle-fill.svg' %}" alt="add subjects" width="20" height="25"> </a><br>     
             <div class="mx-auto">
             <h2 class="subject-name font-weight-bold pagination pagination-lg mx-auto"></h2>
         </div>
-            <form action="#">
-            {% for topics in topic %}
-                <input type="checkbox" value="{{ topics.section }}">
-                <label for="vehicle1"> {{ topics.topic }} </label><br>
-            {%  endfor %}
-            </form>
-            {% for val in classes %}
-            <div class="card " style="width: 18rem;">
-            <img src="{% static 'backgroundImages/1.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">
-                Class Code : {{ val.classId }},<br>
-                Name : {{ val.className }},<br>
-                Section : {{ val.classSection }},<br>
-                Branch : {{ val.classBranch }},<br>
-                Semester : {{ val.classSemester }},<br></p>
-                <a href="{% url 'viewclass' val.classId %}" class="btn btn-outline-primary">View</a>
+
+
+{% comment %} classes  {% endcomment %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for val in classes%}
+            <div class="col">
+                <div class="card">
+                <img src="{% static 'backgroundImages/1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Class Name :{{ val.className }}</h5>
+                    <p class="card-text">
+                        Section :{{ val.classSection }}<br>
+                        Branch :{{ val.classBranch }}<br>
+                        Semester : {{ val.classSemester }}<br>
+                        <a href="{% url 'viewclass' val.classId %}" class="btn btn-outline-primary">View</a>
+                    </p>
+                </div>
+                </div>
             </div>
-            </div><br>
-            {% endfor%}
+        {% endfor %}
         </div>
-      </div>
     </div>
-    
-    {% else%}
+    {% endblock content %}
+{% else %}
     You are not allowed to view this page
-    {% endif %}
-{% endblock content %}
+{% endif %}

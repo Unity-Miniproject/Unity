@@ -81,5 +81,34 @@ def viewClass(request, slug):
         'noEntry': noEntry,
         'fieldNames': fieldNames,
         'objectType': slug,
+        'classnotes' : slug+"notes"
     }
     return render(request, 'teachers/classdetails/index.html', context=cont_dict)
+
+
+def classNotes(request, slug):
+    if request.POST:
+        question = request.POST['classnotesquestion']
+        answer = request.POST['classnotesquestion']
+        qaupdate = ModelSchema.objects.get(name=slug).as_model()
+        qaupdate.objects.create(
+            question=question,
+            answer=answer
+        )
+    model = ModelSchema.objects.get(name=slug).as_model()
+    objList = model.objects.all().values()
+    fieldNames = list()
+    noEntry = False
+    try:
+        for x in objList[0]:
+            fieldNames.append(x)
+    except Exception as e:
+        noEntry = True
+    context={
+        'objects': objList,
+        'noEntry': noEntry,
+        'fieldNames': fieldNames,
+        'objectType': slug,
+        'classnotes': slug+"notes"
+    }
+    return render(request, 'teachers/notes/index.html', context)

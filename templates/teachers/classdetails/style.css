@@ -15,7 +15,15 @@
 .form-popup {
   display: none;
   position: fixed;
-  top: 10em;
+  top: 12em;
   right: 15px;
   border: 1px solid #f1f1f1;
+}
+.form-popup1 {
+  display: none;
+  position: fixed;
+  top: 12em;
+  left: 15px;
+  border: 1px solid #f1f1f1;
+  width: 50em;
 }
