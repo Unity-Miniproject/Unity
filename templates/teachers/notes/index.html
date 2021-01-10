@@ -35,6 +35,9 @@
 </nav>
 <div class="qaupdate">
   <button class="btn btn-outline-info float-right" onclick="openqForm()">Update Q & A</button>
+  <a href="{% url 'pdf_view' objectType %}" class="btn btn-outline-primary float-left p-2 ml" target="_blank">View in PDF</a>
+  <a href="{% url 'pdf_download' objectType %}" class="btn btn-outline-primary float-left p-2 ml">Dowload PDF</a>
+
 </div>
 {% comment %} notes body {% endcomment %}
     {% if noEntry %}
