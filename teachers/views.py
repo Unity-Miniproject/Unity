@@ -89,12 +89,13 @@ def viewClass(request, slug):
 def classNotes(request, slug):
     if request.POST:
         question = request.POST['classnotesquestion']
-        answer = request.POST['classnotesquestion']
+        answer = request.POST['classnotesanswer']
         qaupdate = ModelSchema.objects.get(name=slug).as_model()
         qaupdate.objects.create(
             question=question,
             answer=answer
         )
+        clear_url_caches()
     model = ModelSchema.objects.get(name=slug).as_model()
     objList = model.objects.all().values()
     fieldNames = list()
