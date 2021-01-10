@@ -107,9 +107,7 @@ def assignments(request, slug):
     return render(request, 'assignments/index.html')
 
 
-@login_required(redirect_field_name='login')
-def notes(request, slug):
-    return render(request, 'notes/index.html')
+
 
 
 def updateprofile(request, slug):
@@ -138,3 +136,23 @@ def updateprofile(request, slug):
     }
     return render(request, 'students/updateprofile.html', context)
 
+
+@login_required(redirect_field_name='login')
+def notes(request, slug):
+    objectType = slug+"notes"
+    model = ModelSchema.objects.get(name=objectType).as_model()
+    objList = model.objects.all().values()
+    fieldNames = list()
+    noEntry = False
+    try:
+        for x in objList[0]:
+            fieldNames.append(x)
+    except Exception as e:
+        noEntry = True
+    context = {
+        'objects': objList,
+        'noEntry': noEntry,
+        'fieldNames': fieldNames,
+        'objectType': objectType
+    }
+    return render(request, 'notes/index.html', context)

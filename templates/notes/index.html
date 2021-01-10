@@ -1,1 +1,37 @@
 {% extends 'base.html' %}
+{% load static%}
+{% block include %}
+    <title>Notes</title>
+    <link rel="stylesheet" href="{% static 'notes/style.css' %}">
+{% endblock include %}
+
+{% block content %}
+<div class="qaupdate">
+  <a href="{% url 'pdf_download' objectType %}" class="btn btn-outline-primary float-right p-2 ml">Dowload PDF</a>
+  <a href="{% url 'pdf_view' objectType %}" class="btn btn-outline-primary float-right p-2 ml" target="_blank">View in PDF</a>
+</div>
+    {% for val in objects %}
+                <div class="card posts shadow-lg p-3 mb-5 bg-white rounded border border-primary">
+                <div class="row">
+                <div class="col-sm-9">
+                <div>
+                    <div class="card-body">
+                        {% comment %} {{val.id}}  {% endcomment %}
+                        {{ val.question|safe }}
+                    </div>
+                    </div>
+                </div>
+                <div class=" col-3 p-4 ">
+                    <span  class="card-title fs-3 post-uname" style="text-decoration: none;">{{ post.author }}</span> 
+                </div>
+                <div class=" col-sm-9 m-3"><hr>
+                <div class="card-body">
+                <b>Ans :</b>
+                    {{ val.answer|safe }}
+                </div>
+                </div>
+                
+                </div>
+            </div>
+    {% endfor %}
+{% endblock content %}
