@@ -29,10 +29,8 @@
                 </div>
                 <div class=" col-sm-9 m-3"><hr>
                 <div class="card-body">
-                {% if post.answer1 is None%}
-                {% comment %} {% ifnotequal form.instance.author  self.request.user %} {% endcomment %}
+                {% if not post.answer1  %}
                     <a href="{% url 'answer' post.id %}" type="button" class="btn btn-outline-primary">Answer</a>
-                {% comment %} {% endifnotequal %} {% endcomment %}
                 {% else %}
                 <b>Ans :</b>
                     {{ post.answer1|safe }}

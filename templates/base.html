@@ -27,22 +27,6 @@
                 </nav>
             </li>
         </ul>
-        <div class="profile">
-            <li class="nav-item dropdown dropdown-header">
-                <div class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="userprofile" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50"  alt="profile"/>
-                </div>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'profile' user.username %}"><img src="{% static 'icons/person-fill.svg' %}"> Profile</a>
-                  <a class="dropdown-item" href="{% url 'home' %}"><img src="{% static 'icons/pencil-square.svg' %}"> Posts</a>
-                  <div class="dropdown-item"><img src="{% static 'icons/cloud-check-fill.svg' %}"> {{ user.email.upper|cut:'@BMSIT.IN' }}</div>
-                  <a class="dropdown-item" href="{% url 'videos' %}"><img src="{% static 'icons/collection-play-fill.svg' %}"> Video</a>
-                  <div class="dropdown-divider"></div>
-                    <a class="dropdown-item logout" href="{% url 'logout' %}"><img src="{% static 'icons/box-arrow-right.svg' %}"> Sign Out</a>
-                </div>
-              </li>
-        </div>
-        </div>
       </nav>
     
     {% block content %}

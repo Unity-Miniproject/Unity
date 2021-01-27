@@ -17,6 +17,7 @@ from django.template.loader import get_template
 from django.http import HttpResponse
 from io import BytesIO
 from django.views import View
+from videos.models import videoLink
 
 @login_required
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -68,6 +69,12 @@ def viewClass(request, slug):
             topics=classtopic,
             video_link=video_link,
             completed_date=date_time,
+            discription=topic_desc
+        )
+        videoLink.objects.create(
+            title=classtopic,
+            subject="checking",
+            link=video_link,
             discription=topic_desc
         )
         clear_url_caches()
