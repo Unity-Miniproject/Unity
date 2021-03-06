@@ -18,4 +18,4 @@ Unity is a Teachers Students communication bridge which helps teachers to share 
 
 
 
-For more details see [GitHub Repository](https://github.com/Unity-Miniproject/Unity/)
+For more details see [GitHub Repository](https://github.com/Unity-Miniproject/Unity
